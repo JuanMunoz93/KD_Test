@@ -5,6 +5,7 @@ import definitions.NewsletterDefinition;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,6 +14,7 @@ import utils.CustomUtils;
 public class NewsletterSteps {
 
     private NewsletterDefinition testDefinition;
+    private String email="";
 
     @Before
     public void setUp(Scenario scenario) {
@@ -36,6 +38,7 @@ public class NewsletterSteps {
 
     @Given("I open the Hoffner login page")
     public void i_open_the_hoffner_login_page() {
+        testDefinition.openANewTab();
         testDefinition.setHoffnerLoginPage();
         testDefinition.openHoffnerLoginPage();
     }
@@ -47,8 +50,8 @@ public class NewsletterSteps {
 
     @When("I enter a email in the input field")
     public void i_enter_a_email_in_the_input_field() {
-        String randomEmail= CustomUtils.generateRandomEmail();
-        testDefinition.enterEmail(randomEmail);
+        email= CustomUtils.generateRandomEmail();
+        testDefinition.enterEmail(email);
     }
 
     @When("I press 'Absenden' button")
@@ -61,8 +64,19 @@ public class NewsletterSteps {
         testDefinition.VerifyConfirmationMsgVisible();
     }
 
-    @Given("I have a mail with inbox")
-    public void i_have_a_mail_with_inbox() {
-        testDefinition.getATempMailWithInbox();
+    @Given("I have a email with inbox")
+    public void i_have_a_email_with_inbox() {
+        email=testDefinition.getATempEmailWithInbox();
+    }
+
+    @And("I subscript my email to receive newsletter")
+    public void i_subscript_my_email_To_receive_newsletter() {
+        testDefinition.enterEmail(email);
+        testDefinition.pressAbsendenBtn();
+    }
+
+    @Then("I receive and email to finish my subscription")
+    public void i_receive_and_email_to_finish_my_subscription() {
+        testDefinition.verifyConfirmationEmail();
     }
 }

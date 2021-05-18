@@ -1,9 +1,11 @@
 package controllers;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverController {
@@ -46,6 +48,16 @@ public class WebDriverController {
         driver.quit();
     }
 
+    public void openANewTabAndSwitch() {
+        ((JavascriptExecutor)driver).executeScript("window.open('', '_blank');");
+        switchToTab(1);
+    }
+
+    public void switchToTab(int tab){
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tab));
+    }
+
     private void defineDriverForSO(){
         String so=System.getProperty("os.name");
         if(so.contains("Linux")) {
@@ -61,4 +73,5 @@ public class WebDriverController {
         chromeOptions.addArguments("incognito");
         return chromeOptions;
     }
+
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -29,6 +30,10 @@ public abstract class BasePage {
         wait = new WebDriverWait(driver, timeout);
         wait.until((ExpectedCondition<Boolean>) driver -> element.isEnabled());
         element.sendKeys(text);
+    }
+
+    protected void centerElement(WebElement element){
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
 }

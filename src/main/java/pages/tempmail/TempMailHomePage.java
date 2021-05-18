@@ -20,6 +20,11 @@ public class TempMailHomePage extends BasePage {
     @FindBy(how = How.ID, using = "click-to-refresh")
     private WebElement refreshBtn;
 
+    @FindBy(how = How.CSS, using = "div.user-data-subject>h4")
+    private WebElement mailSubjectLabel;
+
+    private final String MAIL_LIST_CSS="div.inbox-dataList>ul>li>div>a";
+
     public TempMailHomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
@@ -36,14 +41,35 @@ public class TempMailHomePage extends BasePage {
         });
     }
 
-    public void waitEmailAndOpenIt(){
+    public boolean waitANewMail(){
         wait = new WebDriverWait(driver, 60);
-        wait.until((ExpectedCondition<WebElement>) driver -> {
-            List<WebElement> mails = driver.findElements(By.cssSelector("div.inbox-dataList>ul>li>div>a"));
-            if (mails.size()>1){
-                return mails.get(1);
+        return wait.until((ExpectedCondition<Boolean>) driver -> {
+            if (driver.findElements(By.cssSelector(MAIL_LIST_CSS)).size()>1){
+                return Boolean.TRUE;
             }
+            driverSleep(2000);
             return null;
-        }).click();
+        });
+    }
+
+
+    public void openLastReceivedMail(){
+        WebElement firstReceivedMail = driver.findElements(By.cssSelector(MAIL_LIST_CSS)).get(1);
+        centerElement(firstReceivedMail);
+        firstReceivedMail.click();
+    }
+
+    public String getMailSubject(){
+        centerElement(mailSubjectLabel);
+        waitVisible(mailSubjectLabel,10);
+        return mailSubjectLabel.getText();
+    }
+
+    private void driverSleep(int i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

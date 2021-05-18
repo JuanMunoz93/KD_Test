@@ -10,6 +10,7 @@ public class NewsletterDefinition {
     private String hoffnerLoginURL;
     private final WebDriverController webDriverController;
     private LoginPage loginPage;
+    private TempMailHomePage tempMailPage;
 
     public NewsletterDefinition() {
         webDriverController = new WebDriverController(WebDriverController.Browser.Chrome);
@@ -43,12 +44,26 @@ public class NewsletterDefinition {
         Assertions.assertTrue(loginPage.isSubscriptionInProgressMsjVisible());
     }
 
-    public void getATempMailWithInbox() {
+    public String getATempEmailWithInbox() {
         webDriverController.NavigateToPage("https://temp-mail.org/");
-        TempMailHomePage tempMailHomePage = new TempMailHomePage(webDriverController.getDriver());
-        String email= tempMailHomePage.getAnEmail();
-        System.out.println(email);
-        tempMailHomePage.waitEmailAndOpenIt();
-        System.out.println(email);
+        tempMailPage = new TempMailHomePage(webDriverController.getDriver());
+        return tempMailPage.getAnEmail();
     }
+
+    public void openANewTab() {
+        webDriverController.openANewTabAndSwitch();
+    }
+
+    public void verifyConfirmationEmail() {
+        webDriverController.switchToTab(0);
+        Assertions.assertTrue(tempMailPage.waitANewMail(),"After waiting a minute, no mail was received");
+
+        tempMailPage.openLastReceivedMail();
+
+        String mailSubject=tempMailPage.getMailSubject();
+
+        Assertions.assertTrue(mailSubject.contains("Anmeldung"), "The received mail is not to confirm the subscription");
+    }
+
+
 }
