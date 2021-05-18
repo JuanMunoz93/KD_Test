@@ -1,15 +1,16 @@
 package definitions;
 
+import controllers.WebDriverController;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 public class NewsletterDefinition {
 
     private String hoffnerLoginURL;
-    private WebDriver driver;
+    private WebDriverController webDriverController;
 
-    public NewsletterDefinition(WebDriver driver) {
-        this.driver = driver;
+    public NewsletterDefinition() {
+        webDriverController = new WebDriverController(WebDriverController.Browser.Chrome);
     }
 
     public void setHoffnerLoginPage() {
@@ -17,8 +18,7 @@ public class NewsletterDefinition {
     }
 
     public void openHoffnerLoginPage() {
-        driver.get(hoffnerLoginURL);
-
+        webDriverController.NavigateToPage(hoffnerLoginURL);
     }
 
     public void verifyNewsletterSubsInputVisible() {
