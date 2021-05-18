@@ -1,15 +1,24 @@
 package definitions;
 
-
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
 
 public class NewsletterDefinition {
-    public void setHoffnerLoginPage(String loginPageURL) {
-        Assertions.fail("not implemented");
+
+    private String hoffnerLoginURL;
+    private WebDriver driver;
+
+    public NewsletterDefinition(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void setHoffnerLoginPage() {
+        hoffnerLoginURL="https://www.hoeffner.de/login";
     }
 
     public void openHoffnerLoginPage() {
-        Assertions.fail("not implemented");
+        driver.get(hoffnerLoginURL);
+
     }
 
     public void verifyNewsletterSubsInputVisible() {

@@ -1,5 +1,6 @@
 package steps;
 
+import controllers.WebDriverController;
 import definitions.NewsletterDefinition;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -13,13 +14,15 @@ public class NewsletterSteps {
 
     @Before
     public void setUp(Scenario scenario) {
-        definition= new NewsletterDefinition();
+        WebDriverController webDriverController = new WebDriverController(WebDriverController.Browser.Chrome);
+        definition= new NewsletterDefinition(webDriverController.getDriver());
     }
 
     @Given("a Hoffner login page")
     public void a_hoffner_login_page() {
-        definition.setHoffnerLoginPage("");
+        definition.setHoffnerLoginPage();
     }
+
     @When("I open a page")
     public void i_open_a_page() {
         definition.openHoffnerLoginPage();
