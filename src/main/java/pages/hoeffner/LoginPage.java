@@ -18,6 +18,9 @@ public class LoginPage extends BasePage {
     @FindBy(how = How.ID, using = "newsletterFormSubmitBtn")
     private WebElement submitMailBtn;
 
+    @FindBy(how = How.CSS, using = "div.footerNewsletter__confirmation")
+    private WebElement subscriptionInProgressMsj;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -25,7 +28,7 @@ public class LoginPage extends BasePage {
     }
 
     public void acceptAllCookies(){
-        waitClick(acceptCookiesBtn,DEFAULT_TIMEOUT);
+        waitClick(acceptCookiesBtn,10);
     }
 
     public boolean isEmailInputVisible(){
@@ -38,6 +41,10 @@ public class LoginPage extends BasePage {
 
     public void submitMail(){
         waitClick(submitMailBtn,DEFAULT_TIMEOUT);
+    }
+
+    public boolean isSubscriptionInProgressMsjVisible(){
+        return waitVisible(subscriptionInProgressMsj,15);
     }
 
 }

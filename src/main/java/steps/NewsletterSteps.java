@@ -40,7 +40,7 @@ public class NewsletterSteps {
 
     @When("I enter my email in the input field")
     public void i_enter_my_email_in_the_input_field() {
-        testDefinition.enterEmail("");
+        testDefinition.enterEmail("asdjak@mail.co");
     }
 
     @When("I press 'Absenden' button")

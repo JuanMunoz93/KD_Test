@@ -2,13 +2,13 @@ package definitions;
 
 import controllers.WebDriverController;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
 import pages.hoeffner.LoginPage;
 
 public class NewsletterDefinition {
 
     private String hoffnerLoginURL;
-    private WebDriverController webDriverController;
+    private final WebDriverController webDriverController;
+    private LoginPage loginPage;
 
     public NewsletterDefinition() {
         webDriverController = new WebDriverController(WebDriverController.Browser.Chrome);
@@ -23,19 +23,22 @@ public class NewsletterDefinition {
     }
 
     public void verifyNewsletterSubsInputVisible() {
-        LoginPage loginPage = new LoginPage(webDriverController.getDriver());
+        loginPage = new LoginPage(webDriverController.getDriver());
         loginPage.acceptAllCookies();
+        Assertions.assertTrue(loginPage.isEmailInputVisible(),"the email input was not visible");
     }
 
     public void enterEmail(String userEmail) {
-        Assertions.fail("not implemented");
+        loginPage = new LoginPage(webDriverController.getDriver());
+        loginPage.acceptAllCookies();
+        loginPage.writeEmail(userEmail);
     }
 
     public void pressAbsendenBtn() {
-        Assertions.fail("not implemented");
+        loginPage.submitMail();
     }
 
     public void VerifyConfirmationMsgVisible() {
-        Assertions.fail("not implemented");
+        Assertions.assertTrue(loginPage.isSubscriptionInProgressMsjVisible());
     }
 }

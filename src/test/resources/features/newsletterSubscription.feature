@@ -8,6 +8,7 @@ Feature: Newsletter Subscription
     Then I can see a newsletter subscription input
 
   Scenario: Visibility of newsletter subscription confirmation message
-    When I enter my email in the input field
+    When I open a page
+    And I enter my email in the input field
     And I press 'Absenden' button
     Then I can see a confirmation message that my subscription is in progress
