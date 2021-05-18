@@ -3,6 +3,7 @@ package definitions;
 import controllers.WebDriverController;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import pages.hoeffner.LoginPage;
 
 public class NewsletterDefinition {
 
@@ -22,7 +23,8 @@ public class NewsletterDefinition {
     }
 
     public void verifyNewsletterSubsInputVisible() {
-        Assertions.fail("not implemented");
+        LoginPage loginPage = new LoginPage(webDriverController.getDriver());
+        loginPage.acceptAllCookies();
     }
 
     public void enterEmail(String userEmail) {
