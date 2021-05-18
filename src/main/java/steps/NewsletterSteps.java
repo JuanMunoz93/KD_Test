@@ -60,4 +60,9 @@ public class NewsletterSteps {
     public void i_can_see_a_confirmation_message_that_my_subscription_is_in_progress() {
         testDefinition.VerifyConfirmationMsgVisible();
     }
+
+    @Given("I have a mail with inbox")
+    public void i_have_a_mail_with_inbox() {
+        testDefinition.getATempMailWithInbox();
+    }
 }

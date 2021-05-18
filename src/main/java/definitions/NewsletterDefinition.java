@@ -3,6 +3,7 @@ package definitions;
 import controllers.WebDriverController;
 import org.junit.jupiter.api.Assertions;
 import pages.hoeffner.LoginPage;
+import pages.tempmail.TempMailHomePage;
 
 public class NewsletterDefinition {
 
@@ -40,5 +41,14 @@ public class NewsletterDefinition {
 
     public void VerifyConfirmationMsgVisible() {
         Assertions.assertTrue(loginPage.isSubscriptionInProgressMsjVisible());
+    }
+
+    public void getATempMailWithInbox() {
+        webDriverController.NavigateToPage("https://temp-mail.org/");
+        TempMailHomePage tempMailHomePage = new TempMailHomePage(webDriverController.getDriver());
+        String email= tempMailHomePage.getAnEmail();
+        System.out.println(email);
+        tempMailHomePage.waitEmailAndOpenIt();
+        System.out.println(email);
     }
 }

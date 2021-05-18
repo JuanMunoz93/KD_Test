@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
-    private final WebDriver driver;
-    private WebDriverWait wait;
+    protected final WebDriver driver;
+    protected WebDriverWait wait;
     protected final int DEFAULT_TIMEOUT=5;
 
     public BasePage(WebDriver driver){
