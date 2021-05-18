@@ -8,6 +8,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utils.CustomUtils;
 
 public class NewsletterSteps {
 
@@ -33,14 +34,21 @@ public class NewsletterSteps {
         testDefinition.openHoffnerLoginPage();
     }
 
+    @Given("I open the Hoffner login page")
+    public void i_open_the_hoffner_login_page() {
+        testDefinition.setHoffnerLoginPage();
+        testDefinition.openHoffnerLoginPage();
+    }
+
     @Then("I can see a newsletter subscription input")
     public void i_can_see_a_newsletter_subscription_input() {
         testDefinition.verifyNewsletterSubsInputVisible();
     }
 
-    @When("I enter my email in the input field")
-    public void i_enter_my_email_in_the_input_field() {
-        testDefinition.enterEmail("asdjak@mail.co");
+    @When("I enter a email in the input field")
+    public void i_enter_a_email_in_the_input_field() {
+        String randomEmail= CustomUtils.generateRandomEmail();
+        testDefinition.enterEmail(randomEmail);
     }
 
     @When("I press 'Absenden' button")
