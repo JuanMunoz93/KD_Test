@@ -89,7 +89,7 @@ public class NewsletterSteps {
     @When("I complete my registration")
     public void i_complete_my_registration() {
         testDefinition.verifyConfirmationEmail();
-        testDefinition.confirmRegistrarion();
+        testDefinition.confirmRegistration();
     }
 
     @Then("the confirming subscription page is opened in a new tab")

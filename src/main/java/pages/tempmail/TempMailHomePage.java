@@ -50,6 +50,7 @@ public class TempMailHomePage extends BasePage {
 
     public boolean waitANewMail(){
         wait = new WebDriverWait(driver, 60);
+        Log.LOGGER.info("waiting for a new mail");
         return wait.until((ExpectedCondition<Boolean>) driver -> {
             if (driver.findElements(By.cssSelector(MAIL_LIST_CSS)).size()>1){
                 return Boolean.TRUE;
@@ -76,7 +77,8 @@ public class TempMailHomePage extends BasePage {
 
     public void confirmMailRegistration(){
         waitClick(completeRegistrationBtn,DEFAULT_TIMEOUT);
-        Log.LOGGER.info("complete registration button clicked");
+        Log.LOGGER.info("complete registration button clicked, sleep added to complete the redirect operation");
+        driverSleep(5000);
     }
 
     private void driverSleep(int i) {

@@ -76,13 +76,15 @@ public class NewsletterDefinition {
         Log.LOGGER.info("The mail to complete the subscription was received");
     }
 
-    public void confirmRegistrarion() {
+    public void confirmRegistration() {
+        tempMailPage = new TempMailHomePage(webDriverController.getDriver());
         tempMailPage.confirmMailRegistration();
     }
 
     public void verifySubscriptionCompleted() {
-        webDriverController.switchToLastTab();
         String expectedURl=prop.getProperty("MailConfirmedURL");
+
+        webDriverController.switchToLastTab();
         Assert.assertTrue(webDriverController.getCurrentURL().contains(expectedURl),
                 "The completed subscription page was not opened");
         Log.LOGGER.info("The subscription was completed");
