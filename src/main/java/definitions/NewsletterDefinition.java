@@ -59,11 +59,17 @@ public class NewsletterDefinition {
         Assertions.assertTrue(tempMailPage.waitANewMail(),"After waiting a minute, no mail was received");
 
         tempMailPage.openLastReceivedMail();
-
         String mailSubject=tempMailPage.getMailSubject();
-
         Assertions.assertTrue(mailSubject.contains("Anmeldung"), "The received mail is not to confirm the subscription");
     }
 
+    public void confirmRegistrarion() {
+        tempMailPage.confirmMailRegistration();
+    }
 
+    public void verifyRegistrationCompleted() {
+        webDriverController.switchToLastTab();
+        Assertions.assertTrue(webDriverController.getCurrentURL().contains("https://www.hoeffner.de/nl-anmeldung"),
+                "The completed registration page was not opened");
+    }
 }

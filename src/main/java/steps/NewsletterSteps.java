@@ -64,7 +64,7 @@ public class NewsletterSteps {
         testDefinition.VerifyConfirmationMsgVisible();
     }
 
-    @Given("I have a email with inbox")
+    @Given("I have an email with inbox")
     public void i_have_a_email_with_inbox() {
         email=testDefinition.getATempEmailWithInbox();
     }
@@ -78,5 +78,16 @@ public class NewsletterSteps {
     @Then("I receive and email to finish my subscription")
     public void i_receive_and_email_to_finish_my_subscription() {
         testDefinition.verifyConfirmationEmail();
+    }
+
+    @When("I complete my registration")
+    public void i_complete_my_registration() {
+        testDefinition.verifyConfirmationEmail();
+        testDefinition.confirmRegistrarion();
+    }
+
+    @Then("the confirming subscription page is opened in a new tab")
+    public void the_confirming_subscription_page_is_opened_in_a_new_tab() {
+        testDefinition.verifyRegistrationCompleted();
     }
 }

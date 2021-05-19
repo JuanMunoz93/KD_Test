@@ -50,12 +50,20 @@ public class WebDriverController {
 
     public void openANewTabAndSwitch() {
         ((JavascriptExecutor)driver).executeScript("window.open('', '_blank');");
-        switchToTab(1);
+        switchToLastTab();
     }
 
     public void switchToTab(int tab){
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(tab));
+    }
+
+    public void switchToLastTab(){
+        switchToTab(new ArrayList<>(driver.getWindowHandles()).size()-1);
+    }
+
+    public String getCurrentURL(){
+        return driver.getCurrentUrl();
     }
 
     private void defineDriverForSO(){

@@ -23,6 +23,9 @@ public class TempMailHomePage extends BasePage {
     @FindBy(how = How.CSS, using = "div.user-data-subject>h4")
     private WebElement mailSubjectLabel;
 
+    @FindBy(how = How.CSS, using = "div.inbox-data-content-intro td>a[title]")
+    private WebElement completeRegistrationBtn;
+
     private final String MAIL_LIST_CSS="div.inbox-dataList>ul>li>div>a";
 
     public TempMailHomePage(WebDriver driver) {
@@ -63,6 +66,10 @@ public class TempMailHomePage extends BasePage {
         centerElement(mailSubjectLabel);
         waitVisible(mailSubjectLabel,10);
         return mailSubjectLabel.getText();
+    }
+
+    public void confirmMailRegistration(){
+        waitClick(completeRegistrationBtn,DEFAULT_TIMEOUT);
     }
 
     private void driverSleep(int i) {
