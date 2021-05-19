@@ -37,20 +37,20 @@ public class Log {
 
     public static final Logger LOGGER = LogManager.getLogger(TEST_LOGGER_NAME);
 
-    public static void initLogs(String evidenceDirectory, String projectFolder) {
+    public static void initLogs(String evidenceDirectory) {
         Path evidencePath= Paths.get(evidenceDirectory);
         PatternLayout layout = createPattern();
-        configureBasicLoggers(evidencePath, projectFolder, layout);
+        configureBasicLoggers(evidencePath, layout);
         context.updateLoggers();
     }
 
-    private static void configureBasicLoggers(Path evidenceDirectory, String projectFolder, PatternLayout layout) {
+    private static void configureBasicLoggers(Path evidenceDirectory, PatternLayout layout) {
         consoleAppender = createConsoleAppender(layout);
         LoggerConfig consoleConfig = createConsoleLogger(consoleAppender);
         logConfiguration.addLogger(CONSOLE_LOGGER_NAME, consoleConfig);
         logConfiguration.addAppender(consoleAppender);
 
-        FileAppender testAppender = createTestAppender(layout, evidenceDirectory, projectFolder);
+        FileAppender testAppender = createTestAppender(layout, evidenceDirectory);
         LoggerConfig testConfig = createTestLogger(testAppender);
         logConfiguration.addAppender(testAppender);
         logConfiguration.addLogger(TEST_LOGGER_NAME, testConfig);
@@ -88,9 +88,9 @@ public class Log {
         return consoleConfig;
     }
 
-    public static FileAppender createTestAppender(PatternLayout layout, Path evidenceDirectory, String projectFolder) {
+    public static FileAppender createTestAppender(PatternLayout layout, Path evidenceDirectory) {
         FileAppender test = FileAppender.newBuilder()
-                .withFileName(evidenceDirectory.resolve(projectFolder).resolve(TEST_LOGFILE_NAME).toString())
+                .withFileName(evidenceDirectory.resolve(TEST_LOGFILE_NAME).toString())
                 .withAdvertise(true)
                 .withLocking(false)
                 .setName(TESTS_APPENDER_NAME)

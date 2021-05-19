@@ -25,6 +25,10 @@ dependencies {
     // cucumber dependencies
     implementation group: 'io.cucumber', name: 'cucumber-java', version: cucumberVersion
     implementation group: 'io.cucumber', name: 'cucumber-testng', version: cucumberVersion
+    implementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: cucumberVersion
+    implementation group: 'io.cucumber', name: 'cucumber-jvm', version: cucumberVersion, ext: 'pom'
+    implementation group: 'io.cucumber', name: 'cucumber-gherkin', version: cucumberVersion
+
 
     // logger dependencies
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4jVersion
@@ -37,6 +41,9 @@ dependencies {
     // javaFaker
     implementation group: 'com.github.javafaker', name: 'javafaker', version: fakerVersion
 
+    // report
+    implementation group: 'com.aventstack', name: 'extentreports', version: '5.0.7'
+    implementation group: 'tech.grasshopper', name: 'extentreports-cucumber6-adapter', version: '2.8.0'
 }
 
 test {

@@ -7,8 +7,8 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features"
         , glue = {"steps"}
+        , plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
         ,tags = "@Newsletter"
-        , plugin = {"pretty"}
 )
 public class NewsletterRegressionRunner extends AbstractTestNGCucumberTests {
 }

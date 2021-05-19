@@ -19,16 +19,15 @@ public class NewsletterSteps {
 
     @Before
     public void setUp(Scenario scenario) {
-        Log.initLogs("src/test/resources/evidence/","Logger");
-        Log.LOGGER.info("Test started");
-        Log.LOGGER.info("Scenario: ".concat(scenario.getName()));
+        Log.initLogs("Reports");
+        Log.LOGGER.info(String.format("Scenario execution started: '%s'", scenario.getName()));
         testDefinition = new NewsletterDefinition();
     }
 
     @After
     public void tearDown() {
         WebDriverController.quitDriver();
-        Log.LOGGER.info("Test finished");
+        Log.LOGGER.info("Scenario execution finished");
         Log.LOGGER.info("---------------------------");
     }
 
