@@ -1,12 +1,14 @@
-Feature: Newsletter subscription section
+Feature: Newsletter subscription section - functional approach
 
   Background:
     Given a Hoffner login page
     When I open a page
 
+  @Newsletter @Mandatory
   Scenario: Visibility of newsletter subscription field
     Then I can see a newsletter subscription input
 
+  @Newsletter @Mandatory
   Scenario: Visibility of newsletter subscription confirmation message
     When I enter a email in the input field
     And I press 'Absenden' button
