@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
+import utils.Log;
 
 import java.util.List;
 
@@ -35,13 +36,16 @@ public class TempMailHomePage extends BasePage {
 
     public String getAnEmail(){
         wait = new WebDriverWait(driver, 30);
-        return wait.until((ExpectedCondition<String>) driver -> {
+        String email= wait.until((ExpectedCondition<String>) driver -> {
             String mailValue =mailInput.getAttribute("value");
             if (mailValue.contains("@")){
                 return mailValue;
             }
             return null;
         });
+
+        Log.LOGGER.info(String.format("temp email obtained: '%s'", email));
+        return email;
     }
 
     public boolean waitANewMail(){
@@ -53,13 +57,15 @@ public class TempMailHomePage extends BasePage {
             driverSleep(2000);
             return null;
         });
+
     }
 
 
     public void openLastReceivedMail(){
-        WebElement firstReceivedMail = driver.findElements(By.cssSelector(MAIL_LIST_CSS)).get(1);
-        centerElement(firstReceivedMail);
-        firstReceivedMail.click();
+        WebElement lastReceivedMail = driver.findElements(By.cssSelector(MAIL_LIST_CSS)).get(1);
+        centerElement(lastReceivedMail);
+        lastReceivedMail.click();
+        Log.LOGGER.info("last received mail opened");
     }
 
     public String getMailSubject(){
@@ -70,13 +76,15 @@ public class TempMailHomePage extends BasePage {
 
     public void confirmMailRegistration(){
         waitClick(completeRegistrationBtn,DEFAULT_TIMEOUT);
+        Log.LOGGER.info("complete registration button clicked");
     }
 
     private void driverSleep(int i) {
         try {
+            Log.LOGGER.info(String.format("waiting for %s milliseconds", i));
             Thread.sleep(i);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.LOGGER.info("an error occurred while the script was waiting");
         }
     }
 }

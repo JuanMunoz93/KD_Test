@@ -10,6 +10,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.CustomUtils;
+import utils.Log;
 
 public class NewsletterSteps {
 
@@ -18,12 +19,17 @@ public class NewsletterSteps {
 
     @Before
     public void setUp(Scenario scenario) {
+        Log.initLogs("src/test/resources/evidence/","Logger");
+        Log.LOGGER.info("Test started");
+        Log.LOGGER.info("Scenario: ".concat(scenario.getName()));
         testDefinition = new NewsletterDefinition();
     }
 
     @After
     public void tearDown() {
         WebDriverController.quitDriver();
+        Log.LOGGER.info("Test finished");
+        Log.LOGGER.info("---------------------------");
     }
 
     @Given("a Hoffner login page")
@@ -88,6 +94,6 @@ public class NewsletterSteps {
 
     @Then("the confirming subscription page is opened in a new tab")
     public void the_confirming_subscription_page_is_opened_in_a_new_tab() {
-        testDefinition.verifyRegistrationCompleted();
+        testDefinition.verifySubscriptionCompleted();
     }
 }

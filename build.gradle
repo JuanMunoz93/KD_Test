@@ -6,6 +6,7 @@ group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -19,6 +20,15 @@ dependencies {
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-java
     implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.3'
 
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    implementation  group: 'io.cucumber', name: 'cucumber-junit', version: '6.10.3'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine
+    implementation group: 'io.cucumber', name: 'cucumber-junit-platform-engine', version: '6.10.3'
+
+    // https://mvnrepository.com/artifact/io.cucumber/cucumber-core
+    implementation group: 'io.cucumber', name: 'cucumber-core', version: '6.10.3'
+
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
@@ -28,8 +38,14 @@ dependencies {
     // https://mvnrepository.com/artifact/com.github.javafaker/javafaker
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 
+    // https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
+    implementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.7.2'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.12.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
 }
 
 test {
+
     useJUnitPlatform()
 }

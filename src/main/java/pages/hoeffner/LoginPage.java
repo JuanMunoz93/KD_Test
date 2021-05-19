@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
+import utils.Log;
 
 public class LoginPage extends BasePage {
 
@@ -29,6 +30,7 @@ public class LoginPage extends BasePage {
 
     public void acceptAllCookies(){
         waitClick(acceptCookiesBtn,10);
+        Log.LOGGER.info("All cookies accepted");
     }
 
     public boolean isEmailInputVisible(){
@@ -37,10 +39,12 @@ public class LoginPage extends BasePage {
 
     public void writeEmail(String email){
         waitWrite(emailInput,email,DEFAULT_TIMEOUT);
+        Log.LOGGER.info(String.format("email '%s' wrote in the email input", email));
     }
 
     public void submitMail(){
         waitClick(submitMailBtn,DEFAULT_TIMEOUT);
+        Log.LOGGER.info("Absenden Button clicked");
     }
 
     public boolean isSubscriptionInProgressMsjVisible(){
