@@ -1,4 +1,3 @@
-
 Feature: Newsletter subscription section - functional approach
 
   Background:
