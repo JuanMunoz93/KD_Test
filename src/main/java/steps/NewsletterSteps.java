@@ -80,9 +80,15 @@ public class NewsletterSteps {
         testDefinition.pressAbsendenBtn();
     }
 
-    @Then("I receive and email to finish my subscription")
-    public void i_receive_and_email_to_finish_my_subscription() {
+    @Then("I receive a mail to finish my subscription")
+    public void i_receive_a_mail_to_finish_my_subscription() {
         testDefinition.verifyConfirmationEmail();
+    }
+
+    @Then("I receive a link in a mail to finish my subscription")
+    public void i_receive_a_link_in_a_mail_to_finish_my_subscription() {
+        testDefinition.verifyConfirmationEmail();
+        testDefinition.verifyConfirmationLink();
     }
 
     @When("I complete my registration")

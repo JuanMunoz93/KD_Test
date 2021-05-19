@@ -61,7 +61,6 @@ public class TempMailHomePage extends BasePage {
 
     }
 
-
     public void openLastReceivedMail(){
         WebElement lastReceivedMail = driver.findElements(By.cssSelector(MAIL_LIST_CSS)).get(1);
         centerElement(lastReceivedMail);
@@ -79,6 +78,10 @@ public class TempMailHomePage extends BasePage {
         waitClick(completeRegistrationBtn,DEFAULT_TIMEOUT);
         Log.LOGGER.info("complete registration button clicked, sleep added to complete the redirect operation");
         driverSleep(5000);
+    }
+
+    public boolean isCompleteRegistrationLinkInMail(){
+        return waitVisible(completeRegistrationBtn,DEFAULT_TIMEOUT);
     }
 
     private void driverSleep(int i) {

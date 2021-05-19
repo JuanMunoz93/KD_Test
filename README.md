@@ -27,5 +27,18 @@ It's common to find the 2nd and 3rd as only one layer, but personally I prefer t
 + Gherkin - bundled 203.7717.56
 + Cucumber for java - bundled 203.7717.56
 
+## Optional1
++ To assure the quality of the functionality, is important to add some non-happy path scenarios like the following:
+  + Verify the behavior when the 'Abseden' button is pressed when the email input is empty.
+  + Verify the behavior when an email with a wrong format is used.
+    
+  Also, can be useful verify the newsletter subscription functionality with a little screen resolution to verify the correct behavior in the responsive page mode.
+
+  I consider that the newsletter subscription is an important functionality to the company publicity and information diffusion, but it's necessary to confirm first its importance with the product owner to define the priority and impact of the automation of these tests. It's also necessary ask the development team if with their unit tests already have coverage of this functionality to avoid unnecessary redundancies.
+  
+
+
 ## Notes
 + To the last optional scenario, the subscription completed url contains other elements appended to the expected one, as the related to the subscription campaing (i.e. "utm_medium=email&utm_campaign=DOI&utm_adgroup=20190513_DOI-Online-10Eur"). Considering this, the test verifies that the url contains the expected value, not that they are the same.
++ The tests can be executed from the feature files, from the test runners or with a gradle command line (I recommend using the gradle wrapper if the execution is with a gradle command line).
++ The execution report and log are generated in the Reports folder, it's in the project root.

@@ -72,8 +72,13 @@ public class NewsletterDefinition {
         String mailSubject=tempMailPage.getMailSubject();
 
         Log.LOGGER.info(String.format("mail subject: '%s'", mailSubject));
-        Assert.assertTrue(mailSubject.contains("Anmeldung"), "The received mail is not to confirm the subscription");
+        Assert.assertTrue(mailSubject.contains("Anmeldung"), "The received mail is not to the expected");
         Log.LOGGER.info("The mail to complete the subscription was received");
+    }
+
+    public void verifyConfirmationLink() {
+        Assert.assertTrue(tempMailPage.isCompleteRegistrationLinkInMail(),"The received mail doesnt contains the confirmation link");
+        Log.LOGGER.info("The mail contains the confirmation link");
     }
 
     public void confirmRegistration() {
@@ -89,4 +94,6 @@ public class NewsletterDefinition {
                 "The completed subscription page was not opened");
         Log.LOGGER.info("The subscription was completed");
     }
+
+
 }

@@ -7,7 +7,11 @@ Feature: Newsletter Subscription - Integration/E2E approach
 
   @Newsletter @Optional
   Scenario: Reception of newsletter subscription confirmation message
-    Then I receive and email to finish my subscription
+    Then I receive a mail to finish my subscription
+
+  @Newsletter @Optional
+  Scenario: Reception of link to finish newsletter subscription
+    Then I receive a link in a mail to finish my subscription
 
   @Newsletter @Optional
   Scenario: Newsletter subscription confirmation
