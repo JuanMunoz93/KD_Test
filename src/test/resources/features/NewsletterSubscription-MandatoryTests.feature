@@ -5,11 +5,11 @@ Feature: Newsletter subscription section - functional approach
     Given a Hoffner login page
     When I open a page
 
-  @Cucumber @Newsletter @Mandatory
+  @Newsletter @Mandatory
   Scenario: Visibility of newsletter subscription field
     Then I can see a newsletter subscription input
 
-  @Cucumber @Newsletter @Mandatory
+  @Newsletter @Mandatory
   Scenario: Visibility of newsletter subscription confirmation message
     When I enter a email in the input field
     And I press 'Absenden' button
